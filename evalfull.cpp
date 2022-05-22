@@ -1,5 +1,5 @@
 // evalfull.cpp - evaluates a fully-parenthesized expression
-// NAME(S), DATE
+// Andy Ouyang, 5/21/2022
 
 #include <cstdlib>   // for atof function
 #include <cstdio>    // for sscanf
@@ -22,12 +22,20 @@ TokenType identify(char *t);
 bool balanced(char *expression[], int numTokens) {
 
     stack<char *> s;  // USE s TO SOLVE THE PROBLEM - it is an STL
-                      // (Standard Template Library) structure with
-                      // all of the same operations as the stack from
-                      // Step 2 of this lab, but it won't get full
-                      // and it can store any type - <char *> here
-
-    return false; // REPLACE THIS return WITH ACTUAL IMPLEMENTATION
+    for(int i = 0; i < numTokens; i++) {        // (Standard Template Library) structure with
+        if(expression[i] == "(") {              // all of the same operations as the stack from
+            s.push(expression[i]);              // Step 2 of this lab, but it won't get full
+        }                                       // and it can store any type - <char *> here 
+        if(expression[i] == ")") {
+            if(s.empty()) {
+                return false;
+            } else {
+                s.pop();
+            }
+        }
+    }   
+                      
+    return true; 
 }
 
 // DO NOT CHANGE ANYTHING BELOW - BUT DO READ IT
