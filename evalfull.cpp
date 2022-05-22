@@ -23,10 +23,10 @@ bool balanced(char *expression[], int numTokens) {
 
     stack<char *> s;  // USE s TO SOLVE THE PROBLEM - it is an STL
     for(int i = 0; i < numTokens; i++) {        // (Standard Template Library) structure with
-        if(expression[i] == "(") {              // all of the same operations as the stack from
+        if(identify(expression[i]) == LEFT) {              // all of the same operations as the stack from
             s.push(expression[i]);              // Step 2 of this lab, but it won't get full
         }                                       // and it can store any type - <char *> here 
-        if(expression[i] == ")") {
+        if(identify(expression[i]) == RIGHT) {
             if(s.empty()) {
                 return false;
             } else {
